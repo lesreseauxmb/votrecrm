@@ -1,0 +1,8 @@
+RewriteEngine On
+
+RedirectMatch 404 ^/(classes|config|controllers|libs|mbphp|views|.git)
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-l 
+RewriteCond %{REQUEST_FILENAME} !\.\w{1,5}$
+
+RewriteRule ^.*$ index.php [NC,L]
