@@ -7,7 +7,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>Document</title>
+		<title><?= $pageTitle ?></title>
 		<link rel="stylesheet" href="/assets/css/tailwind.css" />
         <link rel="shortcut icon" href="/assets/images/logo-icon.png" type="image/x-icon">
 	</head>
@@ -117,7 +117,7 @@
         </nav>
         <div class="flex items-center md:ml-12">
           <a href="#" class="text-base font-medium text-gray-800 hover:text-gray-600"> English </a>
-          <a href="/espace-client" class="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-800"> Espace client </a>
+          <a href="/espace-client" class="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-800 hover:bg-indigo-900"> Espace client </a>
         </div>
       </div>
     </div>

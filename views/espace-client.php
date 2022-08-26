@@ -40,10 +40,10 @@
     <div class="mx-auto w-full max-w-sm lg:w-96">
       <div>
         <img class="h-16 w-auto" src="/assets/images/logo-icon.png" alt="Sbdcloud">
-        <h2 class="mt-6 text-3xl font-extrabold text-indigo-800">Connexion à votre espace client</h2>
+        <h2 class="mt-6 text-3xl font-extrabold text-indigo-900">Connexion à votre espace client</h2>
         <p class="mt-2 text-sm text-gray-600">
           ou
-          <a href="/" class="font-medium text-indigo-600 hover:text-indigo-800"> retour à l'accueil </a>
+          <a href="/" class="font-medium text-indigo-900 hover:text-indigo-900"> retour à l'accueil </a>
         </p>
       </div>
 
@@ -72,12 +72,12 @@
               </div>
 
               <div class="text-sm">
-                <a href="#" class="font-medium text-indigo-600"> Mot de passe oublié ? </a>
+                <a href="#" class="font-medium text-indigo-900"> Mot de passe oublié ? </a>
               </div>
             </div>
 
             <div>
-              <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2">Connexion</button>
+              <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2">Connexion</button>
             </div>
           </form>
         </div>
@@ -85,7 +85,7 @@
     </div>
   </div>
   <div class="hidden lg:block relative w-0 flex-1">
-    <img class="absolute inset-0 h-full w-full object-cover" src="/assets/images/espace-client.jpg" alt="">
+    <img class="absolute inset-0 h-full w-full object-cover" src="/assets/images/home4.jpg" alt="">
   </div>
 </div>
 

@@ -1,4 +1,6 @@
-<?php include_once 'header.php' ?>
+<?php 
+    $pageTitle = "Contactez-nous | Votre CRM";
+    include_once 'header.php' ?>
 
 <section id="contactez-nous">
   <!--
@@ -101,7 +103,7 @@
             <textarea id="message" name="message" rows="4" class="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-red-500 focus:border-red-500 border border-gray-300 rounded-md" placeholder="Message"></textarea>
           </div>
           <div>
-            <button type="submit" class="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Envoyer ma demande</button>
+            <button type="submit" class="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-800 hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Envoyer ma demande</button>
           </div>
         </form>
       </div>
