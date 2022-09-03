@@ -61,18 +61,19 @@ if($user){
 
 if(strpos($ROUTER->view,"v4/") === 0){
     if(!$user){
-        header('location: /connexion');
+        header('location: /espace-client');
         exit;
     }
 }
 
-if(strpos($ROUTER->view,"admin/") === 0){
-    if(!$user || $user->email != "admin@lesreseauxmb.ca"){
-        header('location: /connexion');
+if(strpos($ROUTER->view,"/admin/") === 0){
+    if(!$user || $user->email != "admin@votrecrm.com"){
+        header('location: /espace-client');
         exit;
     }
 }
 
 VIEW([
     "USER" => @$user,
+    "ROUTER" => @$ROUTER,
 ]);

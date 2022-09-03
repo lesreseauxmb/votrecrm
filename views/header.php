@@ -34,8 +34,8 @@
       </div>
       <div class="hidden md:flex-1 md:flex md:items-center md:justify-between">
         <nav class="flex space-x-10">
-          <a href="/" class="text-base font-medium text-gray-800 hover:text-gray-600"> Accueil </a>
-          <a href="/#nos-crm" class="text-base font-medium text-gray-800 hover:text-gray-600"> Nos CRM </a>
+          <a href="/" class="text-base font-medium text-gray-800 hover:text-gray-600"> <?= __("Accueil","Home"); ?> </a>
+          <a href="/#nos-crm" class="text-base font-medium text-gray-800 hover:text-gray-600"> <?= __("Nos CRM","Our CRMs"); ?> </a>
           <!--<div>
              Item active: "text-gray-900", Item inactive: "text-gray-500"
             <button type="button" class="text-gray-800 hover:text-gray-600 group bg-white rounded-md inline-flex items-center text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo" aria-expanded="false">
@@ -110,14 +110,19 @@
               </div>
             </div>
           </div> -->
-          <a href="/contactez-nous/demonstration" class="text-base font-medium text-gray-800 hover:text-gray-600"> Démonstration </a>
-          <a href="/contactez-nous/proposer-un-metier" class="text-base font-medium text-gray-800 hover:text-gray-600"> Proposer un métier </a>
-          <a href="/contactez-nous" class="text-base font-medium text-gray-800 hover:text-gray-600"> Contactez-nous </a>
+          <a href="<?= __("/contactez-nous/demonstration","/contact-us/demonstration") ?>" class="text-base font-medium text-gray-800 hover:text-gray-600"> <?= __("Démonstration","Demonstration"); ?> </a>
+          <a href="<?= __("/contactez-nous/proposer-un-metier","/contact-us/suggest-a-profession") ?>" class="text-base font-medium text-gray-800 hover:text-gray-600"> <?= __("Proposer un métier","Suggest a profession") ?> </a>
+          <a href="<?= __("/contactez-nous","/contact-us") ?>" class="text-base font-medium text-gray-800 hover:text-gray-600"> <?= __("Contactez-nous","Contact us") ?> </a>
           
         </nav>
         <div class="flex items-center md:ml-12">
-          <a href="#" class="text-base font-medium text-gray-800 hover:text-gray-600"> English </a>
-          <a href="/espace-client" class="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-800 hover:bg-indigo-900"> Espace client </a>
+          <?php
+              if($_SESSION['lang'] == "fr"){ ?>
+                  <a href="/en" class="text-base font-medium text-gray-800 hover:text-gray-600">English</a>
+          <?php } else { ?>
+                  <a href="/fr" class="text-base font-medium text-gray-800 hover:text-gray-600">Français</a>
+          <?php } ?>
+          <a href="<?= __("/espace-client","/client-area") ?>" class="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-900 hover:bg-indigo-900"> <?= __("Espace client","Client area") ?> </a>
         </div>
       </div>
     </div>

@@ -1,3 +1,24 @@
+<?php
+    if(isset($USER)){
+        header('location: /v4/tableau-de-bord');
+        exit;
+    }
+
+    if(!empty($_POST)){
+        if(!empty($_POST['email'])){
+            $user = User::GetBy('email',$_POST['email']);
+        }
+        if($user && $user->password == sha1("les".$_POST['password']."reseauxmb")){
+            $_SESSION['id'] = $user->id;
+            header('location: /v4/tableau-de-bord');
+            exit;
+        } else {
+            BootstrapAlert::Error("Une erreur est survenue");
+            header("location: /espace-client");
+            exit;
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="fr" class="h-full bg-white">
 	<head>
@@ -8,7 +29,7 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<link rel="stylesheet" href="/assets/css/tailwind.css" />
-		<title>Espace client | Votre CRM</title>
+		<title><?= __("Espace client | Votre CRM","Customer area | Your CRM") ?></title>
 	</head>
 	<body class="h-full">
 		<!--
@@ -40,10 +61,10 @@
     <div class="mx-auto w-full max-w-sm lg:w-96">
       <div>
         <img class="h-16 w-auto" src="/assets/images/logo-icon.png" alt="Sbdcloud">
-        <h2 class="mt-6 text-3xl font-extrabold text-indigo-900">Connexion à votre espace client</h2>
+        <h2 class="mt-6 text-3xl font-extrabold text-indigo-900"><?= __("Connexion à votre espace client","Login to your customer area") ?></h2>
         <p class="mt-2 text-sm text-gray-600">
           ou
-          <a href="/" class="font-medium text-indigo-900 hover:text-indigo-900"> retour à l'accueil </a>
+          <a href="/" class="font-medium text-indigo-900 hover:text-indigo-900"> <?= __("retour à l'accueil","back to home") ?> </a>
         </p>
       </div>
 
@@ -52,14 +73,14 @@
         <div class="mt-6">
           <form action="#" method="POST" class="space-y-6">
             <div>
-              <label for="email" class="block text-sm font-medium text-gray-700"> Adresse e-mail </label>
+              <label for="email" class="block text-sm font-medium text-gray-700"> <?= __("Adresse e-mail","E-mail address") ?> </label>
               <div class="mt-1">
                 <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               </div>
             </div>
 
             <div class="space-y-1">
-              <label for="password" class="block text-sm font-medium text-gray-700"> Mot de passe </label>
+              <label for="password" class="block text-sm font-medium text-gray-700"> <?= __("Mot de passe","Password"); ?> </label>
               <div class="mt-1">
                 <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               </div>
@@ -68,16 +89,16 @@
             <div class="flex items-center justify-between">
               <div class="flex items-center">
                 <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-indigo border-gray-300 rounded">
-                <label for="remember-me" class="ml-2 block text-sm text-gray-900"> Se souvenir de moi </label>
+                <label for="remember-me" class="ml-2 block text-sm text-gray-900"> <?= __("Se souvenir de moi","Remember me") ?> </label>
               </div>
 
               <div class="text-sm">
-                <a href="#" class="font-medium text-indigo-900"> Mot de passe oublié ? </a>
+                <a href="#" class="font-medium text-indigo-900"> <?= __("Mot de passe oublié","Forgot your password") ?> ? </a>
               </div>
             </div>
 
             <div>
-              <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2">Connexion</button>
+              <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2"><?= __("Connexion","Login") ?></button>
             </div>
           </form>
         </div>
