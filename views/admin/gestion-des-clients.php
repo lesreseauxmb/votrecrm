@@ -1,5 +1,28 @@
 <?php 
-    $pageTitle = "Gestion des clients | Votre CRM"; 
+    $pageTitle = "Gestion des clients | Votre CRM";
+    if(!empty($_POST)){
+        $newClient = (new User([
+            "type" => 'client',
+            "completename" => $_POST['completename'],
+            "email" => $_POST['email'],
+            "password" => sha1("les"."1234"."reseauxmb"),
+            "phone" => $_POST['phone'],
+            "business" => $_POST['business'],
+            "address" => $_POST['address'],
+            "city" => $_POST['city'],
+            "postalcode" => $_POST['postalcode'],
+            "state" => "Quebec",
+            "country" => "Canada",
+        ]))->Save();
+        header('location: /admin/gestion-des-clients');
+        exit;
+    }
+    if(isset($action) && $action == "connexion" && isset($id)){
+        $_SESSION['id'] = $id;
+        $_SESSION['connect_user'] = true;
+        header('location: /v4/tableau-de-bord');
+        exit;
+    }
     include_once 'views/v4/header.php'; ?>
     <header class="bg-indigo-900 shadow-sm">
         <div class="mx-auto max-w-7xl py-4 px-4 sm:px-6 lg:px-8">
@@ -53,7 +76,7 @@
                                     <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $user->state ?></td>
                                     <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $user->country ?></td>
                                     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
-                                        <a href="#" class="text-indigo-900">Connexion</a>
+                                        <a href="/admin/gestion-des-clients/connexion/<?= $user->id ?>" class="text-indigo-900">Connexion</a>
                                     </td>
                                 </tr>
                         <?php } ?>

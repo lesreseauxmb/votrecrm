@@ -59,7 +59,7 @@ if($user){
     }
 }
 
-if(strpos($ROUTER->view,"v4/") === 0){
+if(strpos($ROUTER->view,"/v4/") === 0){
     if(!$user){
         header('location: /espace-client');
         exit;

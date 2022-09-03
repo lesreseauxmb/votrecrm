@@ -88,15 +88,15 @@
 </div>
 
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="bg-gray-50">
+<div class="bg-indigo-900">
   <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-24 lg:px-8 lg:flex lg:items-center lg:justify-between">
     <h2 class="text-2xl font-extrabold tracking-600 text-gray-900 md:text-3xl w-4/5">
-      <span class="block text-indigo-900"><?= __("Votre profession aurait besoin d'une application en ligne ?","Does your profession need an online application?"); ?> </span>
-      <p class="text-xl font-normal mt-3"><?= __("Si vous pensez qu'il n'existe pas d'application ciblée et utile pour votre métier et ses particularités, prenez-le temps de nous le proposer. On ne sait jamais, vous pourriez être notre prochaine mission !","If you think that there is no targeted and useful application for your job and its particularities, take the time to suggest it to us. You never know, you could be our next mission!"); ?></p>
+      <span class="block text-white"><?= __("Votre profession aurait besoin d'une application en ligne ?","Does your profession need an online application?"); ?> </span>
+      <p class="text-xl font-normal mt-3 text-white"><?= __("Si vous pensez qu'il n'existe pas d'application ciblée et utile pour votre métier et ses particularités, prenez-le temps de nous le proposer. On ne sait jamais, vous pourriez être notre prochaine mission !","If you think that there is no targeted and useful application for your job and its particularities, take the time to suggest it to us. You never know, you could be our next mission!"); ?></p>
     </h2>
     <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
       <div class="inline-flex rounded-md shadow">
-        <a href="<?= __("/contactez-nous/proposer-un-metier","/contact-us/suggest-a-profession"); ?>" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-900 hover:bg-indigo-900"> <?= __("Proposer un métier","Suggest a profession"); ?> </a>
+        <a href="<?= __("/contactez-nous/proposer-un-metier","/contact-us/suggest-a-profession"); ?>" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-900 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"> <?= __("Proposer un métier","Suggest a profession"); ?> </a>
       </div>
     </div>
   </div>

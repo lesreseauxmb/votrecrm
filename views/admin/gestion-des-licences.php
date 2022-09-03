@@ -1,5 +1,50 @@
 <?php 
-    $pageTitle = "Gestion des licences | Votre CRM"; 
+    $pageTitle = "Gestion des licences | Votre CRM";
+
+    function KeyGen(){
+      $key = md5(mktime());
+      $new_key = '';
+      for($i=1; $i <= 25; $i ++ ){
+                $new_key .= $key[$i];
+                if ( $i%5==0 && $i != 25) $new_key.='-';
+      }
+      return strtoupper($new_key);
+    }
+
+    if(!empty($_POST)){
+      $newLicence = (new Licence([
+          "user_id" => $_POST['client'],
+          "crm_id" => $_POST['crm'],
+          "licence" => KeyGen(),
+          "start_date" => $_POST['start_date'],
+          "renew_date" => $_POST['renew_date'],
+          "status" => "Active",
+      ]))->Save();
+
+      // création de la factures avec pro-rata
+
+      header('location: /admin/gestion-des-licences');
+      exit;
+    }
+
+    if(isset($action) && $action == "inactive" && isset($id)){
+        $licence = Licence::Get($id);
+        $licence->status = "Inactive";
+        $licence->Save();
+
+        header('location: /admin/gestion-des-licences');
+        exit;
+    }
+
+    if(isset($action) && $action == "active" && isset($id)){
+      $licence = Licence::Get($id);
+      $licence->status = "Active";
+      $licence->Save();
+
+      header('location: /admin/gestion-des-licences');
+      exit;
+    }
+
     include_once 'views/v4/header.php'; ?>
     <header class="bg-indigo-900 shadow-sm">
         <div class="mx-auto max-w-7xl py-4 px-4 sm:px-6 lg:px-8">
@@ -27,6 +72,7 @@
               <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Nom du client</th>
               <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">CRM</th>
               <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Prix</th>
+              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">No de licence</th>
               <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Date de début</th>
               <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Date de renouvellement</th>
               <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Status</th>             
@@ -45,12 +91,18 @@
                         <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $user->business." - ".$user->completename ?></td>
                         <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $crm->name ?></td>
                         <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $crm->price."$ par année"; ?></td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $licence->licence ?></td>
                         <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $licence->start_date ?></td>
                         <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $licence->renew_date ?></td>
                         <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $licence->status ?></td>
                        
                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
-                            <a href="#" class="text-indigo-900">Mettre en inactive</a>
+                            <?php
+                                if($licence->status == "active"){ ?>
+                                    <a href="/admin/gestion-des-licences/inactive/<?= $licence->id ?>" class="text-indigo-900">Mettre en inactive</a>
+                            <?php } else { ?>
+                                    <a href="/admin/gestion-des-licences/active/<?= $licence->id ?>" class="text-indigo-900">Mettre en inactive</a>      
+                            <?php } ?>
                         </td>
                     </tr>
             <?php } ?>
