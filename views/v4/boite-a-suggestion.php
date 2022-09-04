@@ -41,7 +41,12 @@
                                 </div>
                                 <p class="mt-1 text-sm text-gray-500"><?= $suggestion->suggestion ?></p>
                             </div>
-                            <img class="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src="/assets/images/avatar.png" alt="">
+                            <?php
+                                if($USER->photo != NULL){ ?>
+                                    <img class="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src="/uploads/profil/<?= $USER->id ?>/<?= $USER->photo ?>" alt="">
+                            <?php } else { ?>
+                                    <img class="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src="/assets/images/avatar.png" alt="">
+                            <?php } ?>
                             </div>
                             <div>
                             

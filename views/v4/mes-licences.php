@@ -21,7 +21,7 @@
                   <div class="flex items-center justify-between">
                     <p class="truncate text-sm font-medium text-indigo-900"><?= $crm->name ?> - Utilisé par: <?= $user->business." - ".$user->completename; ?></p>
                     <div class="ml-2 flex flex-shrink-0">
-                      <p class="inline-flex rounded-full bg-green-100 text-green-800 px-2 text-xs font-semibold leading-5"><?= $licence->status ?></p>
+                      <p class="inline-flex rounded-full <?php if($licence->status == "Active"){echo 'bg-green-100 text-green-800';} elseif($licence->status == "Inactive") {echo 'bg-red-100 text-red-800';} else {echo 'bg-gray-100 text-gray-800';} ?>  px-2 text-xs font-semibold leading-5"><?= $licence->status ?></p>
                     </div>
                   </div>
                   <div class="mt-2 sm:flex sm:justify-between">

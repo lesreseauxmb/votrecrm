@@ -1,5 +1,32 @@
 <?php 
-    $pageTitle = "Votre profil | Votre CRM"; 
+    $pageTitle = "Votre profil | Votre CRM";
+    
+    if(isset($_POST['editprofil'])){
+        $USER->email = $_POST['email'];
+        if(!empty($_POST['password'])){
+            $USER->password = sha1("les".$_POST['password']."reseauxmb");
+            $USER->Save();
+            session_unset();
+            session_destroy();
+            header('location: /espace-client');
+            exit;
+        }
+        $USER->completename = $_POST['completename'];
+        $USER->phone = $_POST['phone'];
+        $USER->business = $_POST['business'];
+
+        if(isset($_FILES['photo'])){
+            uploadImage::Upload(0,'profil',$USER->id,'photo');
+            $USER->photo = $_FILES['photo']['name'];
+        }
+
+        $USER->Save();
+
+        //BootstrapAlert::Success(__("Votre profil a été modifié avec succès","Your profile has been successfully modified"));
+        header('location: /v4/votre-profil');
+        exit;
+    }
+
     include_once 'views/v4/header.php'; ?>
     <header class="bg-indigo-900 shadow-sm">
         <div class="mx-auto max-w-7xl py-4 px-4 sm:px-6 lg:px-8">
@@ -54,7 +81,12 @@
                   </div>
 
                   <div class="hidden relative rounded-full overflow-hidden lg:block">
-                    <img class="relative rounded-full w-40 h-40" src="/assets/images/avatar.png" alt="">
+                    <?php
+                        if($USER->photo != NULL){ ?>
+                        <img class="relative rounded-full w-40 h-40" src="/uploads/profil/<?= $USER->id ?>/<?= $USER->photo ?>" alt="">
+                    <?php } else { ?>
+                        <img class="relative rounded-full w-40 h-40" src="/assets/images/avatar.png" alt="">
+                    <?php } ?>
                       
                     <label for="desktop-user-photo" class="absolute inset-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center text-sm font-medium text-white opacity-0 hover:opacity-100 focus-within:opacity-100">
                       <span>Modifier</span>

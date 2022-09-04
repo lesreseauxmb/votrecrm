@@ -42,7 +42,12 @@
               <div>
                 <button type="button" class="flex max-w-xs items-center rounded-full bg-gray-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span class="sr-only">Open user menu</span>
-                  <img id="avatar" class="h-8 w-8 rounded-full" src="/assets/images/avatar.png" alt="">
+                  <?php
+                    if($USER->photo != NULL){ ?>
+                    <img id="avatar" class="h-8 w-8 rounded-full" src="/uploads/profil/<?= $USER->id ?>/<?= $USER->photo ?>" alt="">
+                  <?php } else { ?>
+                    <img id="avatar" class="h-8 w-8 rounded-full" src="/assets/images/avatar.png" alt="">
+                  <?php } ?>
                 </button>
               </div>
 
@@ -58,8 +63,8 @@
               -->
               <div id="menuprofil" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 <!-- Active: "bg-gray-100", Not Active: "" -->
-                <a href="/v4/votre-profil" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Votre profil</a>
-                <a href="/v4/deconnexion" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Déconnexion</a>
+                <a href="/v4/votre-profil" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-900 hover:text-white" role="menuitem" tabindex="-1" id="user-menu-item-0">Votre profil</a>
+                <a href="/v4/deconnexion" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-900 hover:text-white" role="menuitem" tabindex="-1" id="user-menu-item-2">Déconnexion</a>
               </div>
             </div>
           </div>

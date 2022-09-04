@@ -11,6 +11,12 @@
             exit;
         }
     }
+
+    if(isset($action) && $action == "supprimer" && isset($id)){
+        $suggestion = Suggestion::Delete($id);
+        header('location: /admin/gestion-des-suggestions');
+        exit;
+    }
     
     include_once 'views/v4/header.php'; ?>
     <header class="bg-indigo-900 shadow-sm">
@@ -55,6 +61,9 @@
                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 md:pr-0">
                                 <span class="sr-only">Répondre</span>
                             </th>
+                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 md:pr-0">
+                                <span class="sr-only">Supprimer</span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
@@ -73,6 +82,9 @@
                                     <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $suggestion->response ?></td>
                                     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
                                         <a href="/admin/gestion-des-suggestions/repondre/<?= $suggestion->id ?>" class="text-indigo-900">Répondre</a>
+                                    </td>
+                                    <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
+                                        <a href="/admin/gestion-des-suggestions/supprimer/<?= $suggestion->id ?>" class="text-indigo-900">Supprimer</a>
                                     </td>
                                 </tr>
                         <?php } ?>

@@ -1,56 +1,24 @@
 <?php 
-    $pageTitle = "Gestion des prospects | Votre CRM";
+    $pageTitle = "Gestion des demandes | Votre CRM";
 
-    if(!isset($action) && !isset($id)){
-        if(!empty($_POST)){
-          $newProspect = (new Prospect([
-            "crm_id" => $_POST['crm'],
-            "business" => $_POST['business'],
-            "contact" => $_POST['contact'],
-            "email" => $_POST['email'],
-            "phone" => $_POST['phone'],
-            "address" => $_POST['address'],
-            "city" => $_POST['city'],
-            "postalcode" => $_POST['postalcode'],
-            "state" => "Quebec",
-            "country" => "Canada",
-            "step" => 0,
-          ]))->Save();
-          
-          header('location: /admin/gestion-des-prospects');
-          exit;
-        }
-    }
-
-    if(isset($action) && $action == "modifier" && isset($id)){
-        $prospect = Prospect::Get($id);
-        if(!empty($_POST)){
-            $prospect->crm_id = $_POST['crm_id'];
-            $prospect->business = $_POST['business'];
-            $prospect->contact = $_POST['contact'];
-            $prospect->email = $_POST['email'];
-            $prospect->phone = $_POST['phone'];
-            $prospect->address = $_POST['address'];
-            $prospect->city = $_POST['city'];
-            $prospect->postalcode = $_POST['postalcode'];
-            $prospect->status = $_POST['status'];
-            $prospect->step = $_POST['step'];
-            $prospect->Save();
-            header('location: /admin/gestion-des-prospects');
-            exit;
-        }
+    if(isset($action) && $action == "traitee" && isset($id)){
+        $contact = Contact::Get($id);
+        $contact->status = "Demande traitée";
+        $contact->Save();
+        header('location: /admin/gestion-des-demandes');
+        exit;
     }
 
     if(isset($action) && $action == "supprimer" && isset($id)){
-        $prospect = Prospect::Delete($id);
-        header('location: /admin/gestion-des-prospects');
+        $contact = Contact::Delete($id);
+        header('location: /admin/gestion-des-demandes');
         exit;
     }
 
     include_once 'views/v4/header.php'; ?>
     <header class="bg-indigo-900 shadow-sm">
         <div class="mx-auto max-w-7xl py-4 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-lg font-semibold leading-6 text-white">Gestion des prospects</h1>
+            <h1 class="text-lg font-semibold leading-6 text-white">Gestion des demandes</h1>
         </div>
     </header>
     <main>
@@ -181,17 +149,12 @@
             <tr>
               <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 md:pl-0">#</th>
               <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">CRM</th>
-              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Entreprise</th>
-              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Contact</th>
-              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Téléphone</th>
+              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Sujet</th>
+              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Nom complet</th>
               <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">E-mail</th>
-              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Adresse</th>
-              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Ville</th>             
-              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Code postal</th>             
-              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Province</th>             
-              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Pays</th>
-              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Status</th>              
-              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Étape</th>             
+              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Téléphone</th>
+              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Message</th>
+              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Status</th>                  
               <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 md:pr-0">
                 <span class="sr-only">Modifier</span>
               </th>
@@ -202,28 +165,25 @@
           </thead>
           <tbody class="divide-y divide-gray-200">
             <?php
-                foreach(Prospect::FetchAll() as $prospect){
-                  $crm = Crm::Get($prospect->crm_id); ?>
+                foreach(Contact::FetchAll() as $contact){
+                  $crm = Crm::Get($contact->crm_id); ?>
                     <tr>
-                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0"><?= $prospect->id ?></td>
+                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0"><?= $contact->id ?></td>
                         <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $crm->name ?></td>
-                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $prospect->business ?></td>
-                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $prospect->contact ?></td>
-                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $prospect->phone ?></td>
-                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $prospect->email ?></td>
-                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $prospect->address ?></td>
-                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $prospect->city ?></td>
-                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $prospect->postalcode ?></td>
-                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $prospect->state ?></td>
-                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $prospect->country ?></td>
-                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $prospect->status ?></td>
-                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $prospect->step ?></td>
-                       
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $contact->subject ?></td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $contact->completename ?></td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $contact->email ?></td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $contact->phone ?></td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $contact->message ?></td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $contact->status ?></td>
+                        <?php
+                            if($contact->status != "Demande traitée"){ ?>
+                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
+                                    <a href="/admin/gestion-des-demandes/traitee/<?= $contact->id ?>" class="text-indigo-900">Demande traitée</a>                            
+                                </td>
+                        <?php } ?>
                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
-                            <a href="/admin/gestion-des-prospects/modifier/<?= $prospect->id ?>" class="text-indigo-900">Modifier</a>                            
-                        </td>
-                        <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
-                            <a href="/admin/gestion-des-prospects/supprimer/<?= $prospect->id ?>" class="text-indigo-900">Supprimer</a>                            
+                            <a href="/admin/gestion-des-demandes/supprimer/<?= $contact->id ?>" class="text-indigo-900">Supprimer</a>                            
                         </td>
                     </tr>
             <?php } ?>

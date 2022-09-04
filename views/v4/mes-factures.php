@@ -36,6 +36,9 @@
                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 md:pr-0">
                                 <span class="sr-only">Appliquer un paiement</span>
                             </th>
+                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 md:pr-0">
+                                <span class="sr-only">Consulter la facture</span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
@@ -59,8 +62,14 @@
                                     <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->due_date ?></td>
                                     <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->payment_date ?></td>
                                     <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->payment_method ?></td>
+                                    <?php
+                                        if($USER->type == "admin"){ ?>
+                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
+                                                <a href="/admin/gestion-des-clients/connexion/<?= $user->id ?>" class="text-indigo-900">Appliquer un paiement</a>
+                                            </td>
+                                    <?php } ?>
                                     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
-                                        <a href="/admin/gestion-des-clients/connexion/<?= $user->id ?>" class="text-indigo-900">Appliquer un paiement</a>
+                                        <a href="/v4/facture/<?= $invoice->id ?>" class="text-indigo-900">Consulter la facture</a>
                                     </td>
                                 </tr>
                         <?php } ?>

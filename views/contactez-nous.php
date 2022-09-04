@@ -2,14 +2,22 @@
     $pageTitle = __("Contactez-nous | Votre CRM","Contact us | Your CRM");
 
     if(!empty($_POST)){
-        $crm = $_POST['crm'];
-        $subject = $_POST['subject'];
-        $completename = $_POST['completename'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
-        $message = $_POST['message'];
+        $newContact = (new Contact([
+          "crm_id" => $_POST['crm'],
+          "subject" => $_POST['subject'],
+          "completename" => $_POST['completename'],
+          "email" => $_POST['email'],
+          "phone" => $_POST['phone'],
+          "message" => $_POST['message'],
+          "status" => "En attente",
+        ]))->Save();
 
-        
+        if($newContact->id){
+            header('location: /contactez-nous');
+            exit;
+        } else {
+            $error = "Une erreur est survenue";
+        } 
     }
     include_once 'header.php' ?>
 
@@ -76,8 +84,10 @@
           <div>
             <label for="crm" class="block text-sm font-medium text-gray-700"><?= __("Choisissez le CRM","Choose CRM") ?></label>
             <select id="crm" name="crm" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-              <option selected><?= __("Votre préparateur d'impôt","Your tax preparer") ?></option>
-              <option><?= __("CRM pour entreprise","CRM for business") ?></option>
+                <?php
+                    foreach(Crm::FetchAll() as $crm){ ?>
+                        <option value="<?= $crm->id ?>"><?= $crm->name ?></option>
+                <?php } ?>
             </select>
           </div>
           <div>
@@ -102,7 +112,7 @@
                     ];
                 }
                 foreach($tableau as $i => $option){ ?>
-                  <option <?php if($i == @$sujet){echo 'selected';} ?>><?= $option ?></option>
+                  <option <?php if($i == @$sujet){echo 'selected';} ?> value="<?= $i ?>"><?= $option ?></option>
               <?php } ?>
             </select>
           </div>

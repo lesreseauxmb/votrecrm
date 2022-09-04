@@ -5,6 +5,7 @@
             $path = UPLOADS_PATH."/$type/$id";
             if(!is_dir($path)){
                 mkdir($path,0777,true);
+                chmod($path,0777);
             }
             chmod($path,0777);
             
