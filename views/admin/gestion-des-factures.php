@@ -2,6 +2,19 @@
     // un cron job pour date de début jusqu'à date de fin
     // un cron job qui renouvelle les date de fin pour une année avec création de facture date + un mois pour échéance.
     $pageTitle = "Gestion des factures | Votre CRM";
+
+    if(isset($action) && $action == "paiement" && isset($id)){
+        if(!empty($_POST)){
+            $invoice = Invoice::Get($id);
+            $invoice->payment_method = $_POST['payment_method'];
+            $invoice->payment_date = $_POST['payment_date'];
+            $invoice->Save();
+
+            // envoi API vers Les Reseaux MB réception d'un paiement ajout dans les revenus
+            header('location: /admin/gestion-des-factures');
+            exit;
+        }
+    }
     
     include_once 'views/v4/header.php'; ?>
     <header class="bg-indigo-900 shadow-sm">
@@ -10,6 +23,28 @@
         </div>
     </header>
     <main>
+        <?php
+            if(isset($action) && $action == "paiement" && isset($id)){ ?>
+                <div class="mx-auto py-6 max-w-7xl sm:px-6 lg:px-8">
+                    <h2 class="text-1xl text-indigo-900 font-bold">Ajouter un paiement</h2>
+                    <form action="" method="post" class="mt-3">
+                        <label for="payment_method" class="block text-sm font-medium text-gray-700">Méthode de paiement</label>
+                        <div class="mt-2">
+                            <select name="payment_method" class="p-2 shadow-sm focus:ring-red-500 focus:border-red-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                <option value="Carte de crédit">Carte de crédit</option>
+                                <option value="Virement interac">Virement interac</option>
+                                <option value="Chèque">Chèque</option>
+                                <option value="Virement bancaire">Virement bancaire</option>
+                            </select>
+                        </div>
+                        <div class="mt-2">
+                        <label for="payment_date" class="block text-sm font-medium text-gray-700">Date du paiement</label>
+                            <input type="date" name="payment_date" id="payment_date" class="p-2 shadow-sm focus:ring-red-500 focus:border-red-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                        <button type="submit" class="mt-2 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-900 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:col-start-2 sm:text-sm">Sauvegarder le paiement</button>
+                    </form>
+                </div>
+        <?php } ?>
         <div class="mx-auto py-6 sm:px-6 lg:px-8">
             <!-- This example requires Tailwind CSS v2.0+ -->
             <div class="px-4 sm:px-6 lg:px-8">
@@ -53,17 +88,24 @@
                                             echo $item->title." - ";
                                         } ?>
                                     </td>
-                                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->subtotal ?></td>
-                                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->tps ?></td>
-                                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->tvq ?></td>
-                                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->total ?></td>
+                                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->subtotal ?>$</td>
+                                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->tps ?>$</td>
+                                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->tvq ?>$</td>
+                                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->total ?>$</td>
                                     <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->creation_date ?></td>
                                     <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->due_date ?></td>
                                     <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->payment_date ?></td>
                                     <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $invoice->payment_method ?></td>
                                     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
-                                        <a href="/admin/gestion-des-clients/connexion/<?= $user->id ?>" class="text-indigo-900">Appliquer un paiement</a>
+                                        <a href="/v4/facture/<?= $invoice->id ?>" class="text-indigo-900">Voir la facture</a>
                                     </td>
+                                    
+                                    <?php
+                                        if($invoice->payment_date == NULL){ ?>
+                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
+                                                <a href="/admin/gestion-des-factures/paiement/<?= $invoice->id ?>" class="text-indigo-900">Appliquer un paiement</a>
+                                            </td>
+                                    <?php } ?>
                                 </tr>
                         <?php } ?>
 

@@ -1,6 +1,7 @@
 <?php 
     $pageTitle = "Gestion des licences | Votre CRM";
 
+
     function KeyGen(){
       $key = md5(mktime());
       $new_key = '';
@@ -22,9 +23,36 @@
       ]))->Save();
 
       // création de la factures avec pro-rata
+      if($newLicence->id){
+          $today = new DateTime(date('Y-m-d'));
+          $lastDayYear = new DateTime(date('Y-12-31'));
+          $diff = $lastDayYear->diff($today)->format("%a");
+          
+          $crm = Crm::Get($_POST['crm']);
 
-      header('location: /admin/gestion-des-licences');
-      exit;
+          $subtotal = $crm->price / 365 * $diff;
+          $tps = $subtotal / 100 * 5;
+          $tvq = $subtotal / 100 * 9.975;
+          $total = $subtotal + $tps + $tvq;
+
+          // calcul de la diff/rence entre aujourd'hui et le 31
+          $newInvoice = (new Invoice([
+              "user_id" => $_POST['client'],
+              "items" => "{}",
+              "subtotal" => number_format($subtotal,2),
+              "tps" => number_format($tps),
+              "tvq" => number_format($tvq,2),
+              "total" => number_format($total,2),
+              "creation_date" => date('Y-m-d'),
+              "due_date" => date('Y-m-d', strtotime(date("Y-m-d"). ' + 7 days')),
+              "payment_date" => NULL,
+              "payment_method" => NULL,
+          ]))->Save();
+
+          header('location: /admin/gestion-des-licences');
+          exit;
+      }
+
     }
 
     if(isset($action) && $action == "inactive" && isset($id)){
@@ -98,10 +126,10 @@
                        
                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
                             <?php
-                                if($licence->status == "active"){ ?>
+                                if($licence->status == "Active"){ ?>
                                     <a href="/admin/gestion-des-licences/inactive/<?= $licence->id ?>" class="text-indigo-900">Mettre en inactive</a>
-                            <?php } else { ?>
-                                    <a href="/admin/gestion-des-licences/active/<?= $licence->id ?>" class="text-indigo-900">Mettre en inactive</a>      
+                            <?php } elseif($licence->status == "Inactive") { ?>
+                                    <a href="/admin/gestion-des-licences/active/<?= $licence->id ?>" class="text-indigo-900">Activer la licence</a>      
                             <?php } ?>
                         </td>
                     </tr>

@@ -1,8 +1,8 @@
 <?php
     $lang['number']   = 'Référence';
-    $lang['date']     = 'Date';
+    $lang['date']     = 'Date de création';
     $lang['time']     = 'Heure de facturation';
-    $lang['due']      = 'Prélèvement';
+    $lang['due']      = "Date d'échéance";
     $lang['to']       = 'Facturé à';
     $lang['from']     = 'Facturé par';
     $lang['product']  = 'Produit';

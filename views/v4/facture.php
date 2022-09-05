@@ -36,7 +36,11 @@ if($id && $invoice->user_id == $USER->id || $USER->email == "admin@votrecrm.com"
     $invoiceGenerated->addTotal('TVQ 9.975%', $invoice->tvq);
     $invoiceGenerated->addTotal('Total', $invoice->total, true);
     /* Set badge */
-    $invoiceGenerated->addBadge('Paiement reçu');
+    if($invoice->payment_date != NULL){
+        $invoiceGenerated->addBadge('Paiement reçu');
+        $invoiceGenerated->addParagraph("$invoice->payment_method - Paiement reçu le: $invoice->payment_date");
+    }
+
     /* Add title */
     $invoiceGenerated->addTitle('Information importante');
     /* Add Paragraph */

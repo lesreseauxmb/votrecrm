@@ -18,4 +18,5 @@ return [
     "fr:/admin/gestion-des-suggestions/#action/#id" => "admin/gestion-des-suggestions",
     "fr:/admin/gestion-des-prospects/#action/#id" => "admin/gestion-des-prospects",
     "fr:/admin/gestion-des-demandes/#action/#id" => "admin/gestion-des-demandes",
+    "fr:/admin/gestion-des-factures/#action/#id" => "admin/gestion-des-factures",
 ];
