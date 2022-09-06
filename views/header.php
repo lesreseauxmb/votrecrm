@@ -9,10 +9,28 @@
 		/>
 		<title><?= $pageTitle ?></title>
 		<link rel="stylesheet" href="/assets/css/tailwind.css" />
-        <link rel="shortcut icon" href="/assets/images/logo-icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/images/logo-icon.png" type="image/x-icon">
 	</head>
 	<body>
 <!-- This example requires Tailwind CSS v2.0+ -->
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="border-l-4 border-yellow-400 bg-yellow-50 p-4">
+  <div class="flex text-center justify-center">
+    <div class="flex-shrink-0">
+      <!-- Heroicon name: mini/exclamation-triangle -->
+      <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M8.485 3.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 3.495zM10 6a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 6zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <div class="ml-3">
+      <p class="text-sm text-yellow-700">
+        L'ancienne version de Votre CRM est disponible à 
+        <a href="#" class="font-medium text-yellow-700 underline hover:text-yellow-600">l'adresse suivante.</a>
+      </p>
+    </div>
+  </div>
+</div>
+
 <div class="relative bg-white">
   <div class="absolute inset-0 shadow z-30 pointer-events-none" aria-hidden="true"></div>
   <div class="relative z-20">
@@ -122,7 +140,7 @@
           <?php } else { ?>
                   <a href="/fr" class="text-base font-medium text-gray-800 hover:text-gray-600">Français</a>
           <?php } ?>
-          <a href="<?= __("/espace-client","/client-area") ?>" class="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-900 hover:bg-indigo-900"> <?= __("Espace client","Client area") ?> </a>
+          <a href="<?= __("/espace-client","/client-area") ?>" class="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-900 hover:bg-opacity-95"> <?= __("Espace client","Client area") ?> </a>
         </div>
       </div>
     </div>

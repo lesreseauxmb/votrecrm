@@ -4,5 +4,9 @@ session_start();
 session_unset();
 session_destroy();
 
-header('location: /espace-client');
+if($_SESSION['lang'] == "fr"){
+    header('location: /espace-client');
+} else {
+    header('location: /client-area');
+}
 exit;

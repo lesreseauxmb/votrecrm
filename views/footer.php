@@ -19,7 +19,7 @@
         <a href="<?= __("/contactez-nous","/contact-us") ?>" class="text-base text-gray-900 hover:text-gray-900"> <?= __("Contactez-nous","Contact us") ?> </a>
       </div>
     </nav>
-    <p class="mt-8 text-center text-base text-gray-600">Copyright &copy; <?= date('Y') ?> · Votre CRM - <?= __("Tous droits réservés","All rights reserved") ?>.</p>
+    <p class="mt-8 text-center text-base text-gray-500">Copyright &copy; <?= date('Y') ?> · Votre CRM - <?= __("Tous droits réservés","All rights reserved") ?>.</p>
   </div>
 </footer>
 

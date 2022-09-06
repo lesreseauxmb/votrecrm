@@ -13,7 +13,7 @@
         <p class="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl"><?= __("Notre mission est d'offrir des applications web performante conçue pour des professions précises et qui permettent à nos clients d'être efficace.","Our mission is to offer high-performance web applications designed for specific professions and which allow our customers to be efficient.") ?></p>
         <div class="mt-10 sm:flex sm:justify-center lg:justify-start">
           <div class="rounded-md shadow">
-            <a href="/#nos-crm" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-900 hover:bg-indigo-800 md:py-4 md:text-lg md:px-10"> <?= __("Voir nos CRM","See our CRMs") ?></a>
+            <a href="/#nos-crm" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-900 hover:bg-opacity-95 md:py-4 md:text-lg md:px-10"> <?= __("Voir nos CRM","See our CRMs") ?></a>
           </div>
           <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
             <a href="<?= __("/contactez-nous/proposer-un-metier","/contact-us/suggest-a-profession") ?>" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-900 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"> <?= __("Proposer un métier","Suggest a profession"); ?></a>
@@ -40,9 +40,9 @@
           </div>
           <div class="mt-6">
             <h2 class="text-3xl font-extrabold tracking-tight text-gray-900"><?= __("CRM pour entreprise","CRM for business") ?></h2>
-            <p class="mt-4 text-lg text-gray-500"><?= __("Notre logiciel CRM, simple d'utilisation est disponible pour les entreprises qui souhaitent simplifier la gestion de la relation avec leurs clients. Si votre entreprise nécessite votre propre système, nous offrons le développement de CRM pour votre profession avec des fonctionnalités qui lui sont destinées.","Our easy-to-use CRM software is available for businesses that want to simplify relationship management with their customers. If your business requires your own system, we offer CRM development for your profession with features aimed at it.") ?></p>
+            <p class="mt-4 text-lg text-gray-500"><?= __("Notre logiciel CRM, simple d'utilisation est disponible pour les entreprises qui souhaitent simplifier la gestion de la relation avec leurs clients. Si votre entreprise nécessite votre propre système, nous offrons le développement de CRM pour votre profession avec des fonctionnalités qui lui sont destinées, mais avec comme base notre code source.","Our easy-to-use CRM software is available for businesses that want to simplify relationship management with their customers. If your business requires your own system, we offer CRM development for your profession with features aimed at it.") ?></p>
             <div class="mt-6">
-              <a href="#" class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-denturo"> <?= __("En développement","Coming soon"); ?> </a>
+              <a href="#" class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-denturo hover:bg-opacity-95"> <?= __("En développement","Coming soon"); ?> </a>
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@
             <h2 class="text-3xl font-extrabold tracking-tight text-gray-900"><?= __("Votre préparateur d'impôt","Your tax preparer") ?></h2>
             <p class="mt-4 text-lg text-gray-500"><?= __("Notre application en ligne permet aux comptables et préparateur d'impôt d'offrir leur service efficacement à distance avec des outils technologiques intelligents. Gérez vos demandes de services facilement et offrez à vos clients un suivi efficace. Gagnez du temps sur plusieurs tâches répétitives..","Our online application allows accountants and tax preparers to offer their service efficiently remotely with smart technological tools. Manage your service requests easily and offer your customers an efficient follow-up. Save time on multiple repetitive tasks.") ?></p>
             <div class="mt-6">
-                <a href="#" class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-impot"> <?= __("En savoir plus","Learn more") ?></a>
+                <a href="#" class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-impot hover:bg-opacity-95"> <?= __("En savoir plus","Learn more") ?></a>
             </div>
           </div>
         </div>
@@ -80,6 +80,43 @@
     </div>
   </div>
 </div>
+
+<!--
+  This example requires Tailwind CSS v2.0+ 
+  
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/aspect-ratio'),
+    ],
+  }
+  ```
+-->
+<div class="bg-white">
+  <div class="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
+    <div class="overflow-hidden rounded-lg bg-indigo-900 shadow-xl lg:grid lg:grid-cols-2 lg:gap-4">
+      <div class="px-6 pt-10 pb-12 sm:px-16 sm:pt-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
+        <div class="lg:self-center">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <span class="block">Besoin d'un logiciel de facturation ?</span>
+            <span class="block mt-2">Essayez Sbdcloud pendant 7 jours sans obligation.</span>
+          </h2>
+          <p class="mt-4 text-lg leading-6 text-indigo-200">Logiciel de facturation et de caisse simple et efficace. Gestion des factures en retard, facturation récurrente, gestion de l'inventaire et rapports.</p>
+          <a href="https://www.sbdcloud.com" class="mt-8 inline-flex items-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-indigo-900 shadow hover:bg-opacity-95">Essayez Sbdcloud dès aujourd'hui !</a>
+        </div>
+      </div>
+      <div class="aspect-w-5 aspect-h-3 -mt-6 md:aspect-w-2 md:aspect-h-1">
+        <img class="translate-x-6 translate-y-6 transform rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20" src="/assets/images/sbdcloud.png" alt="App screenshot">
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="bg-indigo-900">

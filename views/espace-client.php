@@ -1,6 +1,10 @@
 <?php
     if(isset($USER)){
-        header('location: /v4/tableau-de-bord');
+        if($_SESSION['lang'] == "fr"){
+            header('location: /v4/tableau-de-bord');
+        } else {
+            header('location: /v4/dashbord');
+        }
         exit;
     }
 
@@ -10,11 +14,19 @@
         }
         if($user && $user->password == sha1("les".$_POST['password']."reseauxmb")){
             $_SESSION['id'] = $user->id;
-            header('location: /v4/tableau-de-bord');
+            if($_SESSION['lang'] == "fr"){
+              header('location: /v4/tableau-de-bord');
+            } else {
+                header('location: /v4/dashbord');
+            }
             exit;
         } else {
             BootstrapAlert::Error("Une erreur est survenue");
-            header("location: /espace-client");
+            if($_SESSION['lang'] == "fr"){
+              header('location: /v4/espace-client');
+            } else {
+                header('location: /v4/client-area');
+            }
             exit;
         }
     }
@@ -29,6 +41,7 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<link rel="stylesheet" href="/assets/css/tailwind.css" />
+    <link rel="shortcut icon" href="/assets/images/logo-icon.png" type="image/x-icon">
 		<title><?= __("Espace client | Votre CRM","Customer area | Your CRM") ?></title>
 	</head>
 	<body class="h-full">

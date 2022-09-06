@@ -76,6 +76,7 @@
             </dd>
           </div>
         </dl>
+        <!-- Afficher des images de l'administration et du processus de demande selon le choix du CRM en haut -->
       </div>
     </div>
     <div class="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
@@ -135,7 +136,7 @@
             <textarea id="message" name="message" rows="4" class="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-red-500 focus:border-red-500 border border-gray-300 rounded-md" placeholder="Message"></textarea>
           </div>
           <div>
-            <button type="submit" class="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-900 hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><?= __("Envoyer ma demande","Send my request") ?></button>
+            <button type="submit" class="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-900 hover:bg-opacity-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><?= __("Envoyer ma demande","Send my request") ?></button>
           </div>
         </form>
       </div>

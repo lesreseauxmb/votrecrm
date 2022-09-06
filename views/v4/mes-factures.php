@@ -1,10 +1,10 @@
 <?php
-    $pageTitle = "Mes factures | Votre CRM";
+    $pageTitle = __("Mes factures | Votre CRM","My invoices | Votre CRM");
     
     include_once 'views/v4/header.php'; ?>
     <header class="bg-indigo-900 shadow-sm">
         <div class="mx-auto max-w-7xl py-4 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-lg font-semibold leading-6 text-white">Mes factures</h1>
+            <h1 class="text-lg font-semibold leading-6 text-white"><?= __("Mes factures","My invoices") ?></h1>
         </div>
     </header>
     <main>
@@ -22,17 +22,15 @@
                     <thead>
                         <tr>
                             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 md:pl-0">#</th>
-                            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Nom du client</th>
-                            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Entreprise</th>
                             <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Items</th>
-                            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Sous-total</th>
+                            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"><?= __("Sous-total","Subtotal") ?></th>
                             <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">TPS</th>
                             <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">TVQ</th>
                             <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Total</th>
-                            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Date de création</th>
-                            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Date d'échéance</th>
-                            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Date de paiement</th>
-                            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Méthode de paiement</th>
+                            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"><?= __("Date de création","Creation date") ?></th>
+                            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"><?= __("Date d'échéance","Due date") ?></th>
+                            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"><?= __("Date de paiement","Payment date") ?></th>
+                            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"><?= __("Méthode de paiement","Payment method") ?></th>
                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 md:pr-0">
                                 <span class="sr-only">Appliquer un paiement</span>
                             </th>
@@ -47,8 +45,6 @@
                                 $client = User::Get($invoice->user_id); ?>
                                 <tr>
                                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0"><?= $invoice->id ?></td>
-                                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $client->completename ?></td>
-                                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><?= $client->business ?></td>
                                     <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
                                         <?php foreach(json_decode($invoice->items) as $item){
                                             echo $item->title." - ";

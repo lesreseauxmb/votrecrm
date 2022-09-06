@@ -1,9 +1,9 @@
 <?php 
-    $pageTitle = "Mes licences | Votre CRM"; 
+    $pageTitle = __("Mes licences | Votre CRM","My licenses | Votre CRM"); 
     include_once 'views/v4/header.php'; ?>
     <header class="bg-indigo-900 shadow-sm">
         <div class="mx-auto max-w-7xl py-4 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-lg font-semibold leading-6 text-white">Mes licences</h1>
+            <h1 class="text-lg font-semibold leading-6 text-white"><?= __("Mes licences","My licenses") ?></h1>
         </div>
     </header>
     <main>

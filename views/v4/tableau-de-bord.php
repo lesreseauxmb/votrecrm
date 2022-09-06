@@ -1,5 +1,5 @@
 <?php 
-    $pageTitle = "Tableau de bord | Votre CRM";
+    $pageTitle = __("Tableau de bord | Votre CRM","Dashbord | Votre CRM");
     if($USER->type == "admin"){
         $firstDayYear = date('Y-01-01');
         $lastDayYear = date('Y-12-31');
@@ -19,7 +19,7 @@
     include_once 'views/v4/header.php'; ?>
     <header class="bg-indigo-900 shadow-sm">
         <div class="mx-auto max-w-7xl py-4 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-lg font-semibold leading-6 text-white">Tableau de bord</h1>
+            <h1 class="text-lg font-semibold leading-6 text-white"><?= __("Tableau de bord","Dashbord") ?></h1>
         </div>
     </header>
     <main>

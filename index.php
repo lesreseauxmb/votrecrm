@@ -48,7 +48,7 @@ require_once MBPHP_PATH.'/init.php';
 $user = User::getCurrentUser();
 // DÉTECTION DE LA LANGUE DANS URL
 if($user){
-    i18n::$lang = "fr";
+    i18n::$lang = $_SESSION['lang'];
 } else {
     if(!empty($ROUTER->prefix)){
         i18n::$lang = $_SESSION['lang'] = $ROUTER->prefix;
